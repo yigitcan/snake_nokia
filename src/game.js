@@ -1,6 +1,8 @@
 import {
   BASE_SPEED,
+  LS_HIGH_SCORE_KEY,
   MIN_SPEED,
+  SPEED_FAST_THRESHOLD,
   SPEED_DELTA,
   TILE_COUNT,
 } from "./constants.js";
@@ -10,11 +12,31 @@ import { resetState, state } from "./state.js";
 let ctxRef;
 let scoreElRef;
 let statusElRef;
+let highScoreElRef;
 
-export function initGame(ctx, scoreEl, statusEl) {
+function saveHighScore(score) {
+  try {
+    localStorage.setItem(LS_HIGH_SCORE_KEY, String(score));
+  } catch {
+    // Ignore storage failures so the game still works in private mode.
+  }
+}
+
+function loadHighScore() {
+  try {
+    return parseInt(localStorage.getItem(LS_HIGH_SCORE_KEY) || "0", 10);
+  } catch {
+    return 0;
+  }
+}
+
+export function initGame(ctx, scoreEl, statusEl, highScoreEl) {
   ctxRef = ctx;
   scoreElRef = scoreEl;
   statusElRef = statusEl;
+  highScoreElRef = highScoreEl;
+  state.highScore = loadHighScore();
+  highScoreElRef.textContent = String(state.highScore);
 }
 
 function randomCell() {
@@ -42,6 +64,7 @@ export function startGame() {
   resetState();
   scoreElRef.textContent = "0";
   statusElRef.textContent = "press any arrow key";
+  highScoreElRef.textContent = String(state.highScore);
   placeFood();
   draw(ctxRef, state);
 }
@@ -107,7 +130,15 @@ function tick() {
   if (head.x === state.food.x && head.y === state.food.y) {
     state.score += 1;
     scoreElRef.textContent = String(state.score);
-    statusElRef.textContent = state.score > 6 ? "fast now." : "nice.";
+    statusElRef.textContent =
+      state.score >= SPEED_FAST_THRESHOLD ? "fast now." : "nice.";
+
+    if (state.score > state.highScore) {
+      state.highScore = state.score;
+      highScoreElRef.textContent = String(state.highScore);
+      saveHighScore(state.highScore);
+    }
+
     placeFood();
   } else {
     state.snake.pop();

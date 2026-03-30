@@ -10,9 +10,10 @@ const canvas = document.getElementById("game");
 const ctx = canvas.getContext("2d");
 const scoreEl = document.getElementById("score");
 const statusEl = document.getElementById("status");
+const highScoreEl = document.getElementById("high-score");
 const restartButton = document.getElementById("restart");
 
-initGame(ctx, scoreEl, statusEl);
+initGame(ctx, scoreEl, statusEl, highScoreEl);
 
 initInput({
   onDirection: setDirection,
