@@ -22,7 +22,13 @@
           aria-label="Snake game board"
         ></canvas>
         <div class="controls">
-          <p>arrows or wasd to move</p>
+          <span class="sr-only">arrows or wasd to move</span>
+          <div class="dpad" aria-label="Directional controls">
+            <button class="dpad-btn" data-dir="up" aria-label="Up">▲</button>
+            <button class="dpad-btn" data-dir="left" aria-label="Left">◀</button>
+            <button class="dpad-btn" data-dir="down" aria-label="Down">▼</button>
+            <button class="dpad-btn" data-dir="right" aria-label="Right">▶</button>
+          </div>
           <div class="action-btns">
             <button id="pause" type="button">pause</button>
             <button id="restart" type="button">restart</button>

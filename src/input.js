@@ -77,4 +77,24 @@ export function initInput({ onDirection, onPause, onRestart }) {
     },
     { passive: true }
   );
+
+  const dirPadMap = {
+    up: [0, -1],
+    down: [0, 1],
+    left: [-1, 0],
+    right: [1, 0],
+  };
+
+  document.querySelectorAll(".dpad-btn").forEach((button) => {
+    button.addEventListener("pointerdown", (event) => {
+      event.preventDefault();
+
+      const direction = dirPadMap[button.dataset.dir];
+      if (!direction) {
+        return;
+      }
+
+      onDirection(direction[0], direction[1]);
+    });
+  });
 }
