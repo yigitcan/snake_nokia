@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Snake 3300</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="phone-shell">
+      <section class="screen-frame">
+        <div class="hud">
+          <span>score: <strong id="score">0</strong></span>
+          <span id="status">press any arrow key</span>
+        </div>
+        <canvas
+          id="game"
+          width="360"
+          height="360"
+          aria-label="Snake game board"
+        ></canvas>
+        <div class="controls">
+          <p>arrows or wasd to move</p>
+          <button id="restart" type="button">restart</button>
+        </div>
+      </section>
+    </main>
+
+    <script src="./game.js"></script>
+  </body>
+</html>

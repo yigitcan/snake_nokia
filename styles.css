@@ -1,0 +1,114 @@
+:root {
+  color-scheme: light;
+  --shell: #a5b8b7;
+  --shell-shadow: #6e7e7d;
+  --screen-border: #394d37;
+  --screen-dark: #4d6446;
+  --screen-mid: #6c875d;
+  --screen-light: #9bb07b;
+  --pixel-dark: #24351f;
+  --pixel-mid: #3d532f;
+  --pixel-light: #bdd09a;
+  --text: #20301b;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  background:
+    radial-gradient(circle at top, #d8dfdc 0%, #b8c4c2 45%, #95a5a2 100%);
+  font-family: "Courier New", Courier, monospace;
+  text-transform: lowercase;
+  color: var(--text);
+}
+
+.phone-shell {
+  padding: 1.5rem;
+  border-radius: 2rem;
+  background: linear-gradient(145deg, var(--shell), #839492);
+  box-shadow:
+    inset -6px -6px 0 rgba(255, 255, 255, 0.2),
+    inset 6px 6px 0 rgba(55, 66, 65, 0.25),
+    0 18px 40px rgba(20, 33, 26, 0.28);
+}
+
+.screen-frame {
+  width: min(92vw, 460px);
+  padding: 1rem;
+  border: 6px solid var(--screen-border);
+  border-radius: 1rem;
+  background: linear-gradient(180deg, var(--screen-light), var(--screen-mid));
+  box-shadow:
+    inset 0 0 0 4px rgba(36, 53, 31, 0.25),
+    inset 0 14px 24px rgba(255, 255, 255, 0.18);
+}
+
+.hud,
+.controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  font-size: 0.9rem;
+}
+
+.hud {
+  margin-bottom: 0.75rem;
+}
+
+#game {
+  width: 100%;
+  height: auto;
+  display: block;
+  background:
+    linear-gradient(rgba(36, 53, 31, 0.08), rgba(36, 53, 31, 0.08)),
+    linear-gradient(90deg, rgba(36, 53, 31, 0.06) 1px, transparent 1px),
+    linear-gradient(rgba(36, 53, 31, 0.06) 1px, transparent 1px),
+    var(--screen-light);
+  background-size: auto, 18px 18px, 18px 18px, auto;
+  border: 4px solid rgba(36, 53, 31, 0.5);
+  image-rendering: pixelated;
+}
+
+.controls {
+  margin-top: 0.75rem;
+}
+
+.controls p {
+  margin: 0;
+}
+
+button {
+  border: 2px solid var(--screen-border);
+  background: #d5ddd2;
+  color: var(--text);
+  padding: 0.45rem 0.8rem;
+  font: inherit;
+  cursor: pointer;
+  text-transform: lowercase;
+  box-shadow: 2px 2px 0 rgba(36, 53, 31, 0.25);
+}
+
+button:active {
+  transform: translate(1px, 1px);
+  box-shadow: none;
+}
+
+@media (max-width: 480px) {
+  .screen-frame {
+    padding: 0.75rem;
+  }
+
+  .hud,
+  .controls {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.35rem;
+  }
+}
