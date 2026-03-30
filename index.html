@@ -12,7 +12,9 @@
         <div class="hud">
           <span>score: <strong id="score">0</strong></span>
           <span id="status">press any arrow key</span>
+          <span>best: <strong id="high-score">0</strong></span>
         </div>
+        <!-- 18 tiles x 20px = 360px -->
         <canvas
           id="game"
           width="360"
@@ -20,12 +22,21 @@
           aria-label="Snake game board"
         ></canvas>
         <div class="controls">
-          <p>arrows or wasd to move</p>
-          <button id="restart" type="button">restart</button>
+          <span class="sr-only">arrows or wasd to move</span>
+          <div class="dpad" aria-label="Directional controls">
+            <button class="dpad-btn" data-dir="up" aria-label="Up">▲</button>
+            <button class="dpad-btn" data-dir="left" aria-label="Left">◀</button>
+            <button class="dpad-btn" data-dir="down" aria-label="Down">▼</button>
+            <button class="dpad-btn" data-dir="right" aria-label="Right">▶</button>
+          </div>
+          <div class="action-btns">
+            <button id="pause" type="button">pause</button>
+            <button id="restart" type="button">restart</button>
+          </div>
         </div>
       </section>
     </main>
 
-    <script src="./game.js"></script>
+    <script type="module" src="./game.js"></script>
   </body>
 </html>
