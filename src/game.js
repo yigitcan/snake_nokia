@@ -93,7 +93,21 @@ export function setDirection(nextX, nextY) {
 }
 
 export function togglePause() {
-  return;
+  if (state.gameOver || !state.started) {
+    return;
+  }
+
+  state.paused = !state.paused;
+  statusElRef.textContent = state.paused ? "paused." : "survive.";
+
+  if (state.paused) {
+    clearTimeout(state.tickTimeout);
+    state.tickTimeout = null;
+    draw(ctxRef, state);
+    return;
+  }
+
+  tick();
 }
 
 function endGame() {
